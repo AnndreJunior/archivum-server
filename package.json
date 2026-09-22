@@ -1,0 +1,9 @@
+{
+  "name": "archivum-server",
+  "description": "API Rest para o Archivum",
+  "license": "UNLICENSED",
+  "author": "AnndreJunior",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {}
+}
