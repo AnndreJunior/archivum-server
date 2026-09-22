@@ -5,5 +5,16 @@
   "author": "AnndreJunior",
   "type": "module",
   "main": "dist/server.js",
-  "scripts": {}
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.8",
+    "typescript-eslint": "^8.70.1"
+  }
 }
