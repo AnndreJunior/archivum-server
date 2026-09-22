@@ -14,6 +14,7 @@ const envSchema = z
         }
         return undefined
       }),
+    DATABASE_URL: z.url(),
   })
   .refine(
     (data) => {
