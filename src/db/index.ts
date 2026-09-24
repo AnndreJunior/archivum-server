@@ -1,6 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { Pool } from 'pg'
 import { env } from '@src/config/env'
+import * as schema from '@src/db/schemas'
 import { logger } from '@src/utils/logger'
 
 const pool = new Pool({
@@ -16,6 +17,7 @@ pool.on('error', (err) => {
 
 export const db = drizzle({
   client: pool,
+  schema,
   logger:
     env.NODE_ENV === 'development'
       ? {
