@@ -1,5 +1,8 @@
 import 'dotenv/config'
 import z from 'zod'
+import type { SignOptions } from 'jsonwebtoken'
+
+const jwtExpirationRegex = /^[0-9]+[smhd]$/
 
 const envSchema = z
   .object({
@@ -14,6 +17,18 @@ const envSchema = z
         }
         return undefined
       }),
+    JWT_ACCESS_SECRET: z.string().min(1),
+    JWT_ACCESS_EXPIRES_IN: z
+      .string()
+      .regex(jwtExpirationRegex, 'Formato inválido. Use algo como 15m, 2h, 1d')
+      .default('15m')
+      .transform((str) => str as SignOptions['expiresIn']),
+    JWT_REFRESH_SECRET: z.string().min(1),
+    JWT_REFRESH_EXPIRES_IN: z
+      .string()
+      .regex(jwtExpirationRegex, 'Formato inválido. Use algo como 15m, 2h, 5d')
+      .default('5d')
+      .transform((str) => str as SignOptions['expiresIn']),
     DATABASE_URL: z.url(),
     LIBRARIAN_REGISTRATION: z.string().min(1),
     LIBRARIAN_EMAIL: z.email(),
