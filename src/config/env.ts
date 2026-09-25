@@ -15,6 +15,9 @@ const envSchema = z
         return undefined
       }),
     DATABASE_URL: z.url(),
+    LIBRARIAN_REGISTRATION: z.string().min(1),
+    LIBRARIAN_EMAIL: z.email(),
+    LIBRARIAN_PASSWORD: z.string().min(1),
   })
   .refine(
     (data) => {
