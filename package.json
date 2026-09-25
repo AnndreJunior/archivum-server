@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "migration:generate": "npx drizzle-kit generate",
     "migration:apply": "npx drizzle-kit migrate",
     "db:seed": "tsx src/db/seed.ts",
