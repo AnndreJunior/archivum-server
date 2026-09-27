@@ -5,7 +5,7 @@ import { ForbiddenError, UnauthorizedError } from '@src/errors/app-error'
 import { LoginRequestDto } from '@src/schemas/auth'
 import { verifyPassword } from '@src/utils/password'
 import { eq } from 'drizzle-orm'
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 /**
  * Quando o login é bem-sucedido, um token para é retornado para concluir a autenticação de dois fatores.

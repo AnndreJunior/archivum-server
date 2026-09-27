@@ -6,7 +6,7 @@ import { ensureInitialLibrarian } from '@src/utils/librarian'
 import { eq } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { describe, it, expect, beforeEach } from 'vitest'
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 describe('auth service', () => {
   beforeEach(async () => {
