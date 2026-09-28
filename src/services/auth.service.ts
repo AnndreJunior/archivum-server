@@ -1,7 +1,10 @@
 import { env } from '@src/config/env'
 import { db } from '@src/db'
 import { librarians } from '@src/db/schemas'
-import { ForbiddenError, UnauthorizedError } from '@src/errors/app-error'
+import {
+  InvalidCredentialsError,
+  TwoFactorSetupRequiredError,
+} from '@src/errors/auth-errors'
 import { LoginRequestDto } from '@src/schemas/auth'
 import { verifyPassword } from '@src/utils/password'
 import { eq } from 'drizzle-orm'
@@ -20,12 +23,12 @@ export async function login({
     .where(eq(librarians.email, email))
 
   if (!librarian) {
-    throw new UnauthorizedError('E-mail ou senha inválidos.')
+    throw new InvalidCredentialsError()
   }
 
   const validPassword = await verifyPassword(password, librarian.passwordHash)
   if (!validPassword) {
-    throw new UnauthorizedError('E-mail ou senha inválidos.')
+    throw new InvalidCredentialsError()
   }
 
   const basePayload = {
@@ -40,9 +43,7 @@ export async function login({
       { expiresIn: '5m' },
     )
 
-    throw new ForbiddenError('Autenticação de dois fatores não habilitada.', {
-      token: setupToken,
-    })
+    throw new TwoFactorSetupRequiredError(setupToken)
   }
 
   const token = jwt.sign({ ...basePayload, scope: '2fa' }, env.JWT_ACCESS_SECRET, {
