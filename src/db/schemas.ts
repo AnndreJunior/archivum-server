@@ -41,7 +41,7 @@ export const librarians = table('librarians', (t) => ({
   name: t.text().notNull(),
   hireDate: t.date('hire_date').notNull(),
   active: t.boolean().notNull().default(true),
-  topSecret: t.text('totp_secret'),
+  totpSecret: t.text('totp_secret'),
   firstLogin: t.boolean('first_login').notNull().default(true),
   require2fa: t.boolean('require_2fa').notNull().default(true),
   is2faEnabled: t.boolean('is_2fa_enabled').notNull().default(false),
