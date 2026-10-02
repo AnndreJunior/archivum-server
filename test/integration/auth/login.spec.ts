@@ -8,7 +8,7 @@ import { StatusCodes } from 'http-status-codes'
 import { describe, it, expect, beforeEach } from 'vitest'
 import jwt from 'jsonwebtoken'
 
-describe('auth service', () => {
+describe('login service', () => {
   beforeEach(async () => {
     await ensureInitialLibrarian()
   })
